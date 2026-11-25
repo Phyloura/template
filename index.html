@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loja</title><!-- título real: identity.pageTitle em config/storeConfig.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <!-- Ordem importa: config → aplicação do config → lógica da página.
+       Textos, cores, fontes, imagens e produtos vêm de config/storeConfig.js
+       (marcações data-text, data-img, data-render, ... são preenchidas por applyConfig.js). -->
+  <script src="config/storeConfig.js"></script>
+  <script src="applyConfig.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="mainHeader">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon"><i class="ph ph-lg" data-icon="identity.logoIcon"></i></div>
+      <span data-text="identity.logoText"></span>
+    </a>
+    <nav data-render="nav"></nav>
+    <div class="header-actions">
+      <button class="btn-planner" id="openPlannerBtn">
+        <i class="ph ph-calendar-check"></i>
+        <span class="hide-xs" data-text="header.plannerButton"></span>
+      </button>
+      <div class="cart-badge-wrap">
+        <button class="btn-primary" id="openDrawerBtn">
+          <i class="ph ph-book-open-text"></i>
+          <span class="hide-xs" data-text="header.menuButton"></span>
+        </button>
+        <span class="cart-badge hidden" id="cartBadge">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero-section">
+  <div class="hero">
+    <div class="hero-content fade-up">
+      <div class="hero-badge">
+        <i class="ph ph-map-pin" style="font-size:.85rem"></i> <span data-text="hero.badge"></span>
+      </div>
+      <h1 data-highlight="hero.title"></h1>
+      <p data-text="hero.text"></p>
+      <div class="hero-ctas">
+        <button class="btn-primary" id="openDrawerBtn2" style="font-size:.95rem;padding:13px 26px">
+          <i class="ph ph-shopping-cart"></i> <span data-text="hero.menuButton"></span>
+        </button>
+        <a href="#" data-whatsapp target="_blank" class="btn-secondary" style="font-size:.95rem;padding:13px 26px">
+          <i class="ph ph-whatsapp-logo"></i> <span data-text="hero.whatsappButton"></span>
+        </a>
+      </div>
+      <div class="hero-trust" data-render="trust"></div>
+    </div>
+    <div class="hero-image-wrap fade-up" style="transition-delay:.15s">
+      <img data-img="hero.image" loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<!-- SQUIGGLE -->
+<div class="squiggle">
+  <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:40px;width:100%">
+    <path d="M0,20 C180,40 360,0 540,20 C720,40 900,0 1080,20 C1260,40 1350,10 1440,20 L1440,40 L0,40 Z" fill="var(--white)"/>
+  </svg>
+</div>
+
+<!-- TOP PRODUCTS GRID -->
+<section class="top-products" id="topProdutos">
+  <div class="section-inner">
+    <div class="section-label" data-text="featured.label"></div>
+    <h2 class="section-title fade-up" data-text="featured.title"></h2>
+    <p class="section-sub fade-up" data-text="featured.subtitle"></p>
+    <div class="products-grid" id="productsTrack"></div>
+  </div>
+</section>
+
+
+
+<!-- NOSSA HISTÓRIA -->
+<section class="story" id="historia">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-img-wrap fade-up">
+        <img data-img="story.image" loading="lazy" />
+        <div class="story-img-badge" data-text="story.imageBadge"></div>
+      </div>
+      <div class="fade-up" style="transition-delay:.1s">
+        <div class="section-label" data-text="story.label"></div>
+        <h2 class="section-title" data-text="story.title"></h2>
+        <blockquote class="story-quote" data-text="story.quote"></blockquote>
+        <p style="color:var(--gray);font-size:.95rem;font-weight:500;line-height:1.7" data-text="story.paragraphs.0"></p>
+        <p style="color:var(--gray);font-size:.95rem;font-weight:500;line-height:1.7;margin-top:14px" data-text="story.paragraphs.1"></p>
+        <div class="story-meta">
+          <div class="story-meta-avatar"><i class="ph ph-user-circle ph-xl"></i></div>
+          <div>
+            <div class="story-meta-name" data-text="story.author.name"></div>
+            <div class="story-meta-role" data-text="story.author.role"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="section-inner">
+    <div class="section-label" data-text="howItWorks.label"></div>
+    <h2 class="section-title fade-up" data-text="howItWorks.title"></h2>
+    <p class="section-sub fade-up" data-text="howItWorks.subtitle"></p>
+    <div class="how-steps" data-render="steps"></div>
+  </div>
+</section>
+
+<!-- SQUIGGLE -->
+<div class="squiggle">
+  <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:40px;width:100%">
+    <path d="M0,20 C180,0 360,40 540,20 C720,0 900,40 1080,20 C1260,0 1350,30 1440,20 L1440,0 L0,0 Z" fill="var(--primary-dark)"/>
+  </svg>
+</div>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff">
+  <div class="section-inner">
+    <div class="section-label" data-text="differentiators.label"></div>
+    <h2 class="section-title fade-up" data-text="differentiators.title"></h2>
+    <p class="section-sub fade-up" style="margin-bottom:40px" data-text="differentiators.subtitle"></p>
+    <div class="diff-grid" data-render="differentiators"></div>
+  </div>
+</section>
+
+<!-- SQUIGGLE -->
+<div class="squiggle">
+  <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:40px;width:100%">
+    <path d="M0,20 C180,0 360,40 540,20 C720,0 900,40 1080,20 C1260,0 1350,30 1440,20 L1440,40 L0,40 Z" fill="var(--cream)"/>
+  </svg>
+</div>
+
+<!-- PARCEIROS -->
+<section class="partners" id="parceiros">
+  <div class="section-inner">
+    <div class="section-label" data-text="partners.label"></div>
+    <h2 class="section-title fade-up" data-text="partners.title"></h2>
+    <p class="section-sub fade-up" data-text="partners.subtitle"></p>
+    <div class="partners-grid" data-render="partners"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-inner">
+    <div class="section-label" data-text="testimonials.label"></div>
+    <h2 class="section-title fade-up" data-text="testimonials.title"></h2>
+    <p class="section-sub fade-up" data-text="testimonials.subtitle"></p>
+    <div class="carousel-wrap" id="tCarouselWrap">
+      <div class="carousel-track" id="carouselTrack"></div>
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prevBtn"><i class="ph ph-arrow-left"></i></button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-btn" id="nextBtn"><i class="ph ph-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><i class="ph ph-lg" data-icon="identity.logoIcon" style="color:var(--primary)"></i><span data-text="identity.logoText"></span></div>
+        <p class="footer-tagline" data-text="footer.tagline"></p>
+        <div class="social-links">
+          <a href="#" data-whatsapp class="social-btn" target="_blank"><i class="ph ph-whatsapp-logo ph-lg"></i></a>
+          <a href="#" data-instagram class="social-btn" target="_blank"><i class="ph ph-instagram-logo ph-lg"></i></a>
+        </div>
+      </div>
+      <!-- data-render="nav": os links de header.nav são acrescentados após o título -->
+      <div class="footer-col" data-render="nav">
+        <h4 data-text="footer.navTitle"></h4>
+      </div>
+      <!-- data-render="hours": os horários de contact.hours são acrescentados ao final -->
+      <div class="footer-col" data-render="hours">
+        <h4 data-text="footer.contactTitle"></h4>
+        <p><i class="ph ph-map-pin ph-sm"></i><span data-text="contact.location"></span></p>
+        <a href="#" data-whatsapp target="_blank"><i class="ph ph-phone ph-sm"></i><span data-text="contact.phoneDisplay"></span></a>
+        <p><i class="ph ph-envelope ph-sm"></i><span data-text="contact.email"></span></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-text="footer.copyright"></span>
+      <span data-text="contact.locationFull"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ORDER DRAWER (Catálogo) -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-title"><i class="ph ph-fork-knife ph-lg"></i><span data-text="menu.title"></span></div>
+    <button class="drawer-close" id="closeDrawerBtn"><i class="ph ph-x"></i></button>
+  </div>
+  <div class="drawer-body">
+    <div class="filter-section">
+      <div class="filter-label" data-text="menu.filtersLabel"></div>
+      <div class="filter-chips" id="filterChips" data-render="filterChips"></div>
+    </div>
+    <div class="nbhood-section">
+      <div class="filter-label" data-text="menu.addressLabel"></div>
+      <textarea class="nbhood-select address-textarea" id="addressInput" rows="3" data-placeholder="menu.addressPlaceholder"></textarea>
+    </div>
+    <div id="productList"></div>
+  </div>
+  <div class="drawer-footer">
+    <div class="cart-summary" id="cartSummary"></div>
+    <button class="whatsapp-btn" id="whatsappBtn" disabled>
+      <i class="ph ph-whatsapp-logo ph-lg"></i><span data-text="cart.checkoutButton"></span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- MEAL PLANNER DRAWER -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="planner-overlay" id="plannerOverlay"></div>
+<div class="planner-drawer" id="plannerDrawer">
+
+  <!-- Header -->
+  <div class="planner-header">
+    <div class="planner-header-left">
+      <i class="ph ph-calendar-check" style="font-size:1.3rem;color:var(--primary)"></i>
+      <div class="planner-title" data-text="planner.title"></div>
+      <div class="planner-week-nav">
+        <button class="planner-week-btn" id="plannerPrevWeek"><i class="ph ph-caret-left" style="font-size:.85rem"></i></button>
+        <div class="planner-week-label" id="plannerWeekLabel"></div>
+        <button class="planner-week-btn" id="plannerNextWeek"><i class="ph ph-caret-right" style="font-size:.85rem"></i></button>
+      </div>
+    </div>
+    <button class="drawer-close" id="closePlannerBtn"><i class="ph ph-x"></i></button>
+  </div>
+
+  <!-- Body -->
+  <div class="planner-body">
+
+    <!-- Grid panel -->
+    <div class="planner-grid-panel">
+      <div class="nbhood-section" style="margin-bottom:14px">
+        <div class="filter-label" data-text="menu.addressLabel"></div>
+        <textarea class="nbhood-select address-textarea" id="plannerAddressInput" rows="2" data-placeholder="menu.addressPlaceholder"></textarea>
+      </div>
+      <div class="week-grid" id="weekGrid">
+        <div class="week-grid-header" id="wgHeader">
+          <div></div><!-- spacer -->
+        </div>
+        <div class="wg-rows" id="wgRows"></div>
+      </div>
+    </div>
+
+    <!-- Picker panel -->
+    <div class="planner-picker-panel">
+      <div class="picker-panel-header">
+        <div class="picker-panel-title" data-text="planner.pickerTitle"></div>
+        <div class="picker-panel-cell-label" id="pickerCellLabel" style="color:var(--gray);font-weight:600;font-size:.75rem" data-text="planner.pickerHint"></div>
+        <input class="picker-search" id="pickerSearch" type="text" data-placeholder="planner.searchPlaceholder" />
+      </div>
+      <div class="picker-product-list" id="pickerProductList"></div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="planner-footer">
+    <div class="planner-summary">
+      <div class="planner-stat">
+        <div class="planner-stat-val" id="plannerSlotsFilled">0</div>
+        <div class="planner-stat-label" data-text="planner.slotsLabel"></div>
+      </div>
+      <div class="planner-stat">
+        <div class="planner-stat-val" id="plannerWeekTotal"></div>
+        <div class="planner-stat-label" data-text="planner.totalLabel"></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="planner-clear-btn" id="plannerClearBtn"><i class="ph ph-trash" style="font-size:.8rem"></i> <span data-text="planner.clearButton"></span></button>
+      <button class="planner-wa-btn" id="plannerWaBtn" disabled>
+        <i class="ph ph-whatsapp-logo ph-lg"></i> <span data-text="planner.orderButton"></span>
+      </button>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
